@@ -62,7 +62,7 @@ $(document).ready(function(){
   var markTaskComplete = function (id) {
     $.ajax({
    type: 'PUT',
-      url: 'https://fewd-todolist-api.onrender.com/tasks/' + id + '/mark_complete?api_key=2',
+      url: 'https://fewd-todolist-api.onrender.com/tasks/' + id + '/mark_complete?api_key=207',
       dataType: 'json',
       success: function (response, textStatus) {
         getAndDisplayAllTasks();
@@ -76,8 +76,24 @@ $(document).ready(function(){
   $(document).on('change', '.mark-complete', function () {
     if (this.checked) {
        markTaskComplete($(this).data('id'));
+     } else {
+       markTaskActive($(this).data('id'));
      }
    });
+
+   var markTaskActive = function (id) {
+    $.ajax({
+   type: 'PUT',
+      url: 'https://fewd-todolist-api.onrender.com/tasks/' + id + '/mark_active?api_key=207',
+      dataType: 'json',
+      success: function (response, textStatus) {
+        getAndDisplayAllTasks();
+      },
+      error: function (request, textStatus, errorMessage) {
+        console.log(errorMessage);
+      }
+    });
+  }
   
   getAndDisplayAllTasks();
   
