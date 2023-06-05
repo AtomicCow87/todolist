@@ -7,7 +7,7 @@ $(document).ready(function(){
       success: function (response, textStatus) {
         $('#todo-list').empty();
         response.tasks.forEach(function (task) {
-          $('#todo-list').append('<div class="row"><p class="col-xs-8">' + task.content + '</p><button class="delete btn btn-danger" data-id="' + task.id + '">Delete</button><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '>');
+          $('#todo-list').append('<div class="row"><p class="col-xs-8 task">' + task.content + '</p><button class="delete btn btn-danger" data-id="' + task.id + '">Delete</button><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '>');
         })
       },
       error: function (request, textStatus, errorMessage) {
@@ -95,14 +95,17 @@ $(document).ready(function(){
     });
   }
 
-  var checkStatus = function () {
+ var sortTasks = function () {
+    if ($("input[type='checkbox']").prop('disabled')) {
+     $('.task').toggle();
+    }
+ }
 
-  }
+ $(document).on('click', '#sort-completed', function () {
+  e.preventDefault();
+  sortTasks();
+ })
 
-  $(document).on('click', '.sort', function () {
-
-  })
-  
   getAndDisplayAllTasks();
   
 });
