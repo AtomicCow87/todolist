@@ -1,3 +1,10 @@
 .delete {
   margin-right: 5px;
+  margin-bottom: 5px;
+}
+#sort-task {
+  margin-top: 10px;
+}
+.sort {
+  margin-right: 5px;
 }
